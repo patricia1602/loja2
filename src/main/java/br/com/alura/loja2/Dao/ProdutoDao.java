@@ -26,7 +26,7 @@ public class ProdutoDao {
 
 	public void remover(Produto produto) {
 		produto = em.merge(produto);
-		this.em.persist(produto);
+		this.em.remove(produto);
 	}
 
 	public Produto buscarPorId(Long id) {
@@ -51,11 +51,10 @@ public class ProdutoDao {
 		return em.createQuery(jpql, Produto.class).setParameter("nome", nome).getResultList();
 
 	}
-	
-	public BigDecimal buscarPrecoProdutoComNome(String nome) {
-		String jpql = "SELECT p.preco FROM Produto p WHERE p.nome = : nome";
-		return em.createQuery(jpql, BigDecimal.class).setParameter("nome", nome).getSingleResult();
 
-	}
+	public List<BigDecimal> buscarPrecoDoProdutoComNome(String nome) {
+		String jpql = "SELECT p.preco FROM Produto p WHERE p.nome = : nome";
+		return em.createQuery(jpql, BigDecimal.class).setParameter("nome", nome).getResultList();
+
 	}
 }
