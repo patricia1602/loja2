@@ -35,6 +35,9 @@ public class CadastroDePedido {
 		pedidoDao.cadastrar(pedido);
 
 		em.getTransaction().commit();
+
+		BigDecimal totalVendido = pedidoDao.valorTotalVendido();
+		System.out.println("VALOR TOTAL= " + totalVendido);
 	}
 
 	private static void popularBancoDeDados() {
@@ -47,9 +50,9 @@ public class CadastroDePedido {
 		ProdutoDao produtoDao = new ProdutoDao(em);
 		CategoriaDao categoriaDao = new CategoriaDao(em);
 		ClienteDao clienteDao = new ClienteDao(em);
-
+	
 		em.getTransaction().begin();
-
+		
 		categoriaDao.cadastrar(celulares);
 		produtoDao.cadastrar(celular);
 		clienteDao.cadastrar(cliente);
