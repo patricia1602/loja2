@@ -38,7 +38,7 @@ public class CadastroDePedido {
 		em.getTransaction().commit();
 
 		BigDecimal totalVendido = pedidoDao.valorTotalVendido();
-		System.out.println("VALOR TOTAL= " + totalVendido);
+		System.out.println("VALOR TOTAL: " + totalVendido);
 
 		List<Object[]> relatorio = pedidoDao.relatorioDeVendas();
 		for (Object[] obj : relatorio) {

@@ -27,10 +27,15 @@ public class PedidoDao {
 	}
 
 	public List<Object[]> relatorioDeVendas() {
-		String jpql = "SELECT produto.nome," + "SUM (item.quantidade)," + "MAX(pedido.data)" + "FROM Pedido pedido"
-				+ "JOIN pedido.itens item" + "JOIN item.produto produto " + "GROUP BY produto.nome "
-				+ "ORDER BY item.quantidade DESC";
-		return em.createQuery(jpql, Object[].class).getResultList();
-
+		String jpql = "SELECT produto.nome, "
+				+ " SUM(item.quantidade), "
+				+ "MAX(pedido.data) "
+				+ "FROM Pedido pedido "
+				+ "JOIN pedido.itens item "
+				+ "JOIN item.produto produto " 
+				+ "GROUP BY produto.nome "
+				+ "ORDER BY item.quantidade DESC ";
+		
+			return em.createQuery(jpql, Object[].class).getResultList();
 	}
 }
