@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "pedido")
+@Table(name = "pedidos")
 public class Pedido {
 
 	@Id
@@ -43,7 +43,7 @@ public class Pedido {
 
 	public void adicionarItem(ItemPedido item) {
 		item.setPedido(this);
-		this.itens.add(item);
+		this.getItens().add(item);
 		this.valorTotal = this.valorTotal.add(item.getvalor());
 	}
 
@@ -54,15 +54,6 @@ public class Pedido {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
 	public BigDecimal getValorTotal() {
 		return valorTotal;
 	}
@@ -70,13 +61,21 @@ public class Pedido {
 	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-
+	
 	public LocalDate getData() {
 		return data;
 	}
 
 	public void setData(LocalDate data) {
 		this.data = data;
+	}
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public List<ItemPedido> getItens() {

@@ -14,8 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "produtos")
-@NamedQuery(name = "Produto.produtosPorCategoria",
-query = "SELECT p FROM Produto p WHERE p.categoria.nome = :nome")
+@NamedQuery(name = "Produto.produtosPorCategoria", query = "SELECT p FROM Produto p WHERE p.categoria.nome = :nome")
 public class Produto {
 
 	@Id
@@ -26,7 +25,7 @@ public class Produto {
 	private BigDecimal preco;
 	private LocalDate dataCadastro = LocalDate.now();
 
-	@ManyToOne(fetch = FetchType.LAZY) 
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Categoria categoria;
 
 	public Produto() {
@@ -70,6 +69,10 @@ public class Produto {
 
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
+	}
+
+	public LocalDate getDataCadastro() {
+		return dataCadastro;
 	}
 
 	public void setDataCadastro(LocalDate dataCadastro) {
