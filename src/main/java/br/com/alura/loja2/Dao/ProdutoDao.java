@@ -63,27 +63,26 @@ public class ProdutoDao {
 	public List<Produto> buscarPorParametros(String nome, BigDecimal preco, LocalDate dataCadastro) {
 		String jpql = "SELECT p FROM Produto p WHERE 1=1";
 		if (nome != null && !nome.trim().isEmpty()) {
-			jpql = "WHERE p.nome = :nome";
+			jpql = "AND p.nome = :nome";
 		}
 		if (preco != null) {
 			jpql = "AND p.preco = :preco";
 		}
 		if (dataCadastro != null) {
 			jpql = "AND p.dataCadastro = :dataCadastro";
-
-			TypedQuery<Produto> query = em.createQuery(jpql, Produto.class);
-			if (nome != null && !nome.trim().isEmpty()) {
-				query.setParameter("nome", nome);
-			}
-			if (preco != null) {
-				query.setParameter("preco", preco);
-			}
-			if (dataCadastro != null) {
-				query.setParameter("dataCadastro", dataCadastro);
-
-			}
-
-			return query.getResultList();
 		}
+
+		TypedQuery<Produto> query = em.createQuery(jpql, Produto.class);
+		if (nome != null && !nome.trim().isEmpty()) {
+			query.setParameter("nome", nome);
+		}
+		if (preco != null) {
+			query.setParameter("preco", preco);
+		}
+		if (dataCadastro != null) {
+			query.setParameter("dataCadastro", dataCadastro);
+		}
+
+		return query.getResultList();
 	}
 }
