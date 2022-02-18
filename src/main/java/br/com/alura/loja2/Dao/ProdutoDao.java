@@ -27,7 +27,7 @@ public class ProdutoDao {
 	}
 
 	public void atualizar(Produto produto) {
-		this.em.persist(produto);
+		this.em.merge(produto);
 	}
 
 	public void remover(Produto produto) {
